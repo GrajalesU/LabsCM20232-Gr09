@@ -1,5 +1,6 @@
 package co.edu.udea.compumovil.gr09_20232.lab1
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.widget.DatePicker
 import androidx.compose.material3.Button
@@ -15,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 
 
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun CustomDatePicker(text: String){
     val mContext = LocalContext.current
