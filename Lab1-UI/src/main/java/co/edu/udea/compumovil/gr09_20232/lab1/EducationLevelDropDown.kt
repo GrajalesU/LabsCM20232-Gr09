@@ -33,17 +33,21 @@ enum class EducationLevel {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EducationLevelDropDown() {
+fun EducationLevelDropDown(setEducationLevel: (EducationLevel) -> Unit = {}) {
     var expanded by remember { mutableStateOf(false) }
     var selectedItem by remember { mutableStateOf(EducationLevel.ElementarySchool.name) }
     val items = EducationLevel.values().toList()
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp)
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
         OutlinedTextField(
             value = selectedItem,
-            onValueChange = { selectedItem = it },
+            onValueChange = {
+                selectedItem = it
+            },
             readOnly = true,
             label = { Text("Elementary School") },
             trailingIcon = {
@@ -62,6 +66,7 @@ fun EducationLevelDropDown() {
                 DropdownMenuItem(
                     onClick = {
                         selectedItem = item.name
+                        setEducationLevel(item)
                         expanded = false
                     },
                     text = { Text(item.name) },

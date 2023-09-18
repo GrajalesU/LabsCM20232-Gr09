@@ -1,5 +1,6 @@
 package co.edu.udea.compumovil.gr09_20232.lab1
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,8 +28,8 @@ enum class Gender {
 }
 
 @Composable
-fun GenderSelector() {
-    var selectedGender by remember { mutableStateOf(Gender.Male) }
+fun GenderSelector(setGender: (Gender) -> Unit = {}) {
+    var selectedGender: Gender? by remember { mutableStateOf(null) }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -45,7 +46,10 @@ fun GenderSelector() {
         ) {
             RadioButton(
                 selected = selectedGender == Gender.Male,
-                onClick = { selectedGender = Gender.Male },
+                onClick = {
+                    selectedGender = Gender.Male
+                    setGender(Gender.Male)
+                },
                 colors = RadioButtonDefaults.colors(
                     selectedColor = MaterialTheme.colorScheme.primary
                 )
@@ -54,7 +58,10 @@ fun GenderSelector() {
 
             RadioButton(
                 selected = selectedGender == Gender.Female,
-                onClick = { selectedGender = Gender.Female },
+                onClick = {
+                    selectedGender = Gender.Female
+                    setGender(Gender.Female)
+                },
                 colors = RadioButtonDefaults.colors(
                     selectedColor = MaterialTheme.colorScheme.primary
                 )
@@ -63,7 +70,10 @@ fun GenderSelector() {
 
             RadioButton(
                 selected = selectedGender == Gender.Other,
-                onClick = { selectedGender = Gender.Other },
+                onClick = {
+                    selectedGender = Gender.Other
+                    setGender(Gender.Other)
+                },
                 colors = RadioButtonDefaults.colors(
                     selectedColor = MaterialTheme.colorScheme.primary
                 )

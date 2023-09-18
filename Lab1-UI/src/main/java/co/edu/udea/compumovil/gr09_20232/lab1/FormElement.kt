@@ -1,5 +1,6 @@
 package co.edu.udea.compumovil.gr09_20232.lab1
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -29,8 +30,13 @@ enum class InputType {
     Email,
     Password
 }
+
 @Composable
-fun FormElement(label: String, inputType: InputType = InputType.Text) {
+fun FormElement(
+    label: String,
+    inputType: InputType = InputType.Text,
+    setValue: (String) -> Unit = {}
+) {
     var text by remember { mutableStateOf("") }
 
     Column(
@@ -41,11 +47,13 @@ fun FormElement(label: String, inputType: InputType = InputType.Text) {
         Text(text = label, style = MaterialTheme.typography.bodyLarge)
         BasicTextField(
             value = text,
-            onValueChange = { newText -> text = newText },
+            onValueChange = {
+                text = it
+                setValue(it)
+            },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 4.dp)
-            ,
+                .padding(top = 4.dp),
             keyboardOptions = KeyboardOptions.Default.copy(
                 keyboardType = when (inputType) {
                     InputType.Text -> KeyboardType.Text
@@ -64,8 +72,10 @@ fun FormElement(label: String, inputType: InputType = InputType.Text) {
                         if (inputType == InputType.Password) {
                             // Mask the password input
                             text = "*".repeat(newText.length)
+                            setValue(newText)
                         } else {
                             text = newText
+                            setValue(newText)
                         }
                     },
                     textStyle = TextStyle(color = MaterialTheme.colorScheme.primary),

@@ -1,6 +1,5 @@
 package co.edu.udea.compumovil.gr09_20232.lab1
 
-import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.widget.DatePicker
 import androidx.compose.material3.Button
@@ -14,16 +13,13 @@ import java.util.*
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 
-
-
-@SuppressLint("SuspiciousIndentation")
 @Composable
-fun CustomDatePicker(text: String){
+fun CustomDatePicker(text: String, setValue: (String) -> Unit = {}) {
     val mContext = LocalContext.current
 
     val mYear: Int
-    val mMonth : Int
-    val mDay : Int
+    val mMonth: Int
+    val mDay: Int
 
     val mCalendar = Calendar.getInstance()
 
@@ -38,21 +34,24 @@ fun CustomDatePicker(text: String){
 
     val mDatePickerDialog = DatePickerDialog(
         mContext,
-        { _:DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
+        { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
             mDate.value = "$mDayOfMonth/${mMonth + 1}/$mYear"
+            setValue("$mDayOfMonth/${mMonth + 1}/$mYear")
         }, mYear, mMonth, mDay
     )
 
     val buttonText = mDate.value.ifEmpty { text }
-    val buttonBgColor = if (mDate.value.isNotEmpty()) Color.Transparent else MaterialTheme.colorScheme.primary
-    val buttonColor: Color =  if (mDate.value.isNotEmpty()) Color.Black else Color.White
+    val buttonBgColor =
+        if (mDate.value.isNotEmpty()) Color.Transparent else MaterialTheme.colorScheme.primary
+    val buttonColor: Color = if (mDate.value.isNotEmpty()) Color.Black else Color.White
 
-        Button(onClick = {
+    Button(
+        onClick = {
             mDatePickerDialog.show()
-        }, colors = ButtonDefaults.buttonColors(containerColor = buttonBgColor)
-        ,
-        ){
-            Text(text=buttonText, color = buttonColor)
-        }
+        },
+        colors = ButtonDefaults.buttonColors(containerColor = buttonBgColor),
+    ) {
+        Text(text = buttonText, color = buttonColor)
+    }
 }
 

@@ -11,10 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import co.edu.udea.compumovil.gr09_20232.lab1.CustomDatePicker
 
 @Composable
-fun BirthdaySelector() {
+fun BirthdaySelector(setBirthday: (String) -> Unit = {}) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -23,7 +22,9 @@ fun BirthdaySelector() {
     ) {
         Text(text = "Birthday", style = MaterialTheme.typography.bodyLarge)
         Spacer(modifier = Modifier.width(60.dp))
-        CustomDatePicker("Select a date")
+        CustomDatePicker("Select a date", setValue = {
+            setBirthday(it)
+        })
     }
 }
 
