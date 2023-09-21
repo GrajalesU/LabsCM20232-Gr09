@@ -11,31 +11,11 @@ data class CountryData(
     @SerializedName("cities_name") val citiesName: List<String>,
 )
 
-data class StatesData(
-    @SerializedName("state_name") val stateName: String,
-)
-
-data class CitiesData(
-    @SerializedName("city_name") val cityName: String,
-)
 
 interface LocalitationApi {
 
     @GET("countries")
     suspend fun getAllCountries(): List<CountryData>
-
-    @GET("states")
-    suspend fun getAllStates(): List<StatesData>
-
-    @GET("states/{countryName}")
-    suspend fun getStateByCountry(@Path("countryName") countryName: String): List<StatesData>
-
-    @GET("cities")
-    suspend fun getAllCities(): List<CitiesData>
-
-    @GET("cities/{stateName}")
-    suspend fun getCitiesByName(@Path("stateName") citiesName: String): List<CitiesData>
-
 
 }
 
