@@ -8,6 +8,7 @@ import retrofit2.http.Path
 
 data class CountryData(
     @SerializedName("country_name") val countryName: String,
+    @SerializedName("cities_name") val citiesName: List<String>,
 )
 
 data class StatesData(

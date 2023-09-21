@@ -95,7 +95,7 @@ fun CountryDownMenu(selectItem: String){
             modifier = Modifier
                 .width(with(LocalDensity.current){textFieldSize.width.toDp()})
         ) {
-            //Log.d("API", "Lista: "+countries.toString())
+            Log.d("API", "Lista: "+countries.toString())
             countries?.forEach { label ->
                 DropdownMenuItem(text = { Text(text = label.countryName) }, onClick = {
                     selectedItem = label.countryName
