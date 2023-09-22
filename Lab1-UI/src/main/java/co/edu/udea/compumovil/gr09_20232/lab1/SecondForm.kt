@@ -62,7 +62,7 @@ fun SecondMainContent(){
         HeaderWithTitle(title = "Personal Information")
         FormElement(label = "Teléfono", inputType = InputType.Number)
         FormElement(label = "Correo", inputType = InputType.Email)
-        CountryDownMenu(selectItem = "selecciona tu país")
+        LocatationDownMenu()
         FormElement(label = "Dirección", inputType = InputType.Number)
     }
 

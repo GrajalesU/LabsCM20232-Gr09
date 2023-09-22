@@ -34,21 +34,22 @@ import kotlinx.coroutines.withContext
 
 @ExperimentalMaterial3Api
 @Composable
-fun CountryDownMenu(selectItem: String){
-    var selectedItem by remember { mutableStateOf(" ")  }
+fun LocatationDownMenu(){
+    var selectedItemCountries by remember { mutableStateOf(" ")  }
+    var selectedItemCities by remember { mutableStateOf(" ")  }
     var countries: List<CountryData>? by remember { mutableStateOf(null) }
+    var cities: List<String>? by remember { mutableStateOf(null) }
 
 
-    var expanded by remember { mutableStateOf(false) }
+    var expandedCountries by remember { mutableStateOf(false) }
+    var expandedCities by remember { mutableStateOf(false) }
 
     var textFieldSize by remember { mutableStateOf(Size.Zero) }
 
-    val icon = if (expanded){
-        Icons.Filled.KeyboardArrowUp
-    }else{
-        Icons.Filled.KeyboardArrowDown
-    }
 
+
+
+    //cargar datos del mock
     var hasLoadedDataCountry by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
@@ -67,43 +68,96 @@ fun CountryDownMenu(selectItem: String){
         }
     }
 
+    //drop countries
+    val icon = if (expandedCountries){
+        Icons.Filled.KeyboardArrowUp
+    }else{
+        Icons.Filled.KeyboardArrowDown
+    }
 
     Column (modifier = Modifier.padding(20.dp)){
 
         OutlinedTextField(
-            value = selectedItem,
-            onValueChange = {selectedItem = it},
+            value = selectedItemCountries,
+            onValueChange = {selectedItemCountries = it},
             readOnly = true,
             modifier = Modifier
                 .fillMaxWidth()
                 .onGloballyPositioned { coordinates ->
                     textFieldSize = coordinates.size.toSize()
                 },
-            label = { Text(text = selectItem) },
+            label = { Text(text = "Selecciona tu paìs") },
             textStyle = LocalTextStyle.current.copy(
                 color = LocalContentColor.current
             ),
             trailingIcon = {
                 Icon(icon, "", Modifier
-                    .clickable { expanded = !expanded })
+                    .clickable { expandedCountries = !expandedCountries })
             }
         )
 
         DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false},
+            expanded = expandedCountries,
+            onDismissRequest = { expandedCountries = false},
             modifier = Modifier
                 .width(with(LocalDensity.current){textFieldSize.width.toDp()})
         ) {
             //Log.d("API", "Lista: "+countries.toString())
             countries?.forEach { label ->
                 DropdownMenuItem(text = { Text(text = label.countryName) }, onClick = {
-                    selectedItem = label.countryName
-                    expanded = false
+                    selectedItemCountries = label.countryName
+                    expandedCountries = false
+                    cities = label.citiesName
                 })
             }
 
         }
     }
-    Log.d("pais seleccionado",selectedItem)
+    //Log.d("pais seleccionado",selectedItem)
+
+
+    //drop cities
+    val iconCountryDown = if (expandedCities){
+        Icons.Filled.KeyboardArrowUp
+    }else{
+        Icons.Filled.KeyboardArrowDown
+    }
+
+    Column (modifier = Modifier.padding(20.dp)){
+
+        OutlinedTextField(
+            value = selectedItemCities,
+            onValueChange = {selectedItemCities = it},
+            readOnly = true,
+            modifier = Modifier
+                .fillMaxWidth()
+                .onGloballyPositioned { coordinates ->
+                    textFieldSize = coordinates.size.toSize()
+                },
+            label = { Text(text = "Selecciona tu ciudad") },
+            textStyle = LocalTextStyle.current.copy(
+                color = LocalContentColor.current
+            ),
+            trailingIcon = {
+                Icon(icon, "", Modifier
+                    .clickable { expandedCities = !expandedCities })
+            }
+        )
+
+        DropdownMenu(
+            expanded = expandedCities,
+            onDismissRequest = { expandedCities = false},
+            modifier = Modifier
+                .width(with(LocalDensity.current){textFieldSize.width.toDp()})
+        ) {
+            //Log.d("API", "Lista: "+countries.toString())
+            cities?.forEach { label ->
+                DropdownMenuItem(text = { Text(text = label) }, onClick = {
+                    selectedItemCities = label
+                    expandedCities = false
+                })
+            }
+
+        }
+    }
 }
