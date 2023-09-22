@@ -21,6 +21,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
@@ -55,12 +57,16 @@ fun FormElement(
                 .fillMaxWidth()
                 .padding(top = 4.dp),
             keyboardOptions = KeyboardOptions.Default.copy(
+
                 keyboardType = when (inputType) {
                     InputType.Text -> KeyboardType.Text
                     InputType.Number -> KeyboardType.Number
                     InputType.Email -> KeyboardType.Email
                     InputType.Password -> KeyboardType.Password
-                }
+                },
+                imeAction = ImeAction.Next,
+                capitalization = KeyboardCapitalization.Sentences,
+                autoCorrect = false
             ),
             textStyle = LocalTextStyle.current.copy(
                 color = LocalContentColor.current
