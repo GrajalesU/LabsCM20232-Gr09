@@ -18,7 +18,6 @@ interface LocalitationApi {
     suspend fun getAllCountries(): List<CountryData>
 
 
-
 }
 
 
