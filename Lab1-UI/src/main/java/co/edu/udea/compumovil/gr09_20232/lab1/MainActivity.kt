@@ -3,7 +3,17 @@ package co.edu.udea.compumovil.gr09_20232.lab1
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+
+enum class PersonalInformationScreen(@StringRes val title: Int) {
+    PersonalInformation(title = R.string.personal_information),
+    ContactInformation(title = R.string.contact_information),
+}
 
 
 class MainActivity : ComponentActivity() {
@@ -17,8 +27,31 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun MainContent() {
-        PersonalInformation(formViewModel)
+        Router()
     }
+
+    @Composable
+    fun Router() {
+        val formViewModel = FormViewModel()
+        val navController: NavHostController = rememberNavController()
+        val onNextClicked =  {
+            navController.navigate(PersonalInformationScreen.ContactInformation.name)
+        }
+        NavHost(
+            navController = navController,
+            startDestination = PersonalInformationScreen.PersonalInformation.name,
+        ) {
+            composable(route = PersonalInformationScreen.PersonalInformation.name) {
+                PersonalInformation(formViewModel, onNextButtonClicked = onNextClicked)
+            }
+            composable(route = PersonalInformationScreen.ContactInformation.name) {
+                // Here is secondView
+            }
+        }
+    }
+
 }
 
-// TODO: add context
+
+
+

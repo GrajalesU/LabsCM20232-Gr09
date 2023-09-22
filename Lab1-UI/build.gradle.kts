@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "co.edu.udea.compumovil.gr09_20232.lab1"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "co.edu.udea.compumovil.gr09_20232.lab1"
@@ -61,8 +61,12 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.2")
+    implementation ("androidx.navigation:navigation-compose:2.4.0")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.navigation:navigation-testing:2.6.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")

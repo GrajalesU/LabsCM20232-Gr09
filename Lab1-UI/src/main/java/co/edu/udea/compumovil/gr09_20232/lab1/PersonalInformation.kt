@@ -20,7 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun PersonalInformation(viewModel: FormViewModel) {
+fun PersonalInformation(viewModel: FormViewModel, onNextButtonClicked: () -> Unit ){
     val uiState by viewModel.uiState.collectAsState()
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -50,6 +50,7 @@ fun PersonalInformation(viewModel: FormViewModel) {
             onClick = {
                 Log.d("personal Information", "${uiState.personalInformationName} ${uiState.personalInformationLastName} \n" +
                         "${uiState.personalInformationBirthday} ${uiState.personalInformationGender} ${uiState.personalInformationEducationLevel}")
+                onNextButtonClicked()
             },
             modifier = Modifier
                 .width(240.dp)

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Labs20232-Gr09</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="contact_information">Contact Information</string>
 </resources>
