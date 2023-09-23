@@ -4,6 +4,7 @@ package co.edu.udea.compumovil.gr09_20232.lab1
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,7 +26,7 @@ import androidx.compose.ui.Alignment
 @Composable
 fun SecondMainContent(viewModel: FormViewModel){
     //strings
-
+    var mContext = LocalContext.current
     val uiState by viewModel.uiState.collectAsState()
 
     Column{
@@ -45,6 +46,7 @@ fun SecondMainContent(viewModel: FormViewModel){
             })
         Button(
             onClick = {
+                Toast.makeText(mContext, " Formulario enviado", Toast.LENGTH_SHORT).show()
                 Log.d("personal Information", "Información personal: \n" +
                         "Nombre: ${uiState.personalInformationName} ${uiState.personalInformationLastName} \n" +
                         "Género: ${uiState.personalInformationGender} \n" +
@@ -59,6 +61,7 @@ fun SecondMainContent(viewModel: FormViewModel){
                         "Ciudad: ${uiState.contactInformationCity} \n"
 
                 )
+
             },
             modifier = Modifier
                 .width(240.dp)
