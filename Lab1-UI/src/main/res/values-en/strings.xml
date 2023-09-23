@@ -3,8 +3,6 @@
     <string name="app_name">Labs20232-Gr09</string>
     <string name="personal_information">Personal Information</string>
     <string name="contact_information">Contact Information</string>
-
-    //second form
     <string name="select_country_label">select your country</string>
     <string name="select_city_label">select your city</string>
     <string name="title_contact_information">Contact information</string>
@@ -12,4 +10,10 @@
     <string name="email_contact">E-mail</string>
     <string name="direction_contact">Address</string>
     <string name="lenguaje_choose">Lenguaje</string>
+    <string name="birthday">Birthday</string>
+    <string name="select_date">Select date</string>
+    <string name="name">Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="next">Next</string>
+    <string name="gender">Gender</string>
 </resources>

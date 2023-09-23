@@ -49,7 +49,7 @@ fun EducationLevelDropDown(setEducationLevel: (EducationLevel) -> Unit = {}) {
                 selectedItem = it
             },
             readOnly = true,
-            label = { Text("Elementary School") },
+            label = { Text(EducationLevel.ElementarySchool.name) },
             trailingIcon = {
                 IconButton(onClick = { expanded = true }) {
                     Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = null)

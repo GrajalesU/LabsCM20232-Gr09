@@ -11,4 +11,10 @@
     <string name="email_contact">Correo</string>
     <string name="direction_contact">Dirección</string>
     <string name="lenguaje_choose">Idioma</string>
+    <string name="birthday">Fecha de nacimiento</string>
+    <string name="select_date">Selecciona fecha</string>
+    <string name="name">Nombre</string>
+    <string name="last_name">Apellido</string>
+    <string name="next">Siguiente</string>
+    <string name="gender">Género</string>
 </resources>

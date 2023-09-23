@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -20,9 +21,9 @@ fun BirthdaySelector(setBirthday: (String) -> Unit = {}) {
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(text = "Birthday", style = MaterialTheme.typography.bodyLarge)
+        Text(text = stringResource(R.string.birthday), style = MaterialTheme.typography.bodyLarge)
         Spacer(modifier = Modifier.width(60.dp))
-        CustomDatePicker("Select a date", setValue = {
+        CustomDatePicker(stringResource(R.string.select_date), setValue = {
             setBirthday(it)
         })
     }

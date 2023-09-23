@@ -17,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -28,12 +29,11 @@ fun PersonalInformation(viewModel: FormViewModel, onNextButtonClicked: () -> Uni
                 .verticalScroll(rememberScrollState())
                 .fillMaxHeight()
         ) {
-            HeaderWithTitle(title = "Personal Information")
-            FormElement(label = "Name", inputType = InputType.Text, setValue = {
-                Log.d("Personal information name", it)
+            HeaderWithTitle(title = stringResource(R.string.personal_information))
+            FormElement(label = stringResource(R.string.name), inputType = InputType.Text, setValue = {
                 viewModel.setPersonalInformationName(it)
             })
-            FormElement(label = "Last Name", inputType = InputType.Text, setValue = {
+            FormElement(label = stringResource(R.string.last_name), inputType = InputType.Text, setValue = {
                 viewModel.setPersonalInformationLastName(it)
             })
             GenderSelector(setGender = {
@@ -57,7 +57,7 @@ fun PersonalInformation(viewModel: FormViewModel, onNextButtonClicked: () -> Uni
                 .padding(16.dp)
                 .align(Alignment.BottomEnd)
         ) {
-            Text(text = "Next")
+            Text(text = stringResource(R.string.next))
         }
     }
 }

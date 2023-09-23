@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
 enum class Gender {
@@ -35,7 +36,7 @@ fun GenderSelector(setGender: (Gender) -> Unit = {}) {
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        Text(text = "Gender", style = MaterialTheme.typography.bodyLarge)
+        Text(text = stringResource(R.string.gender), style = MaterialTheme.typography.bodyLarge)
 
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -54,7 +55,7 @@ fun GenderSelector(setGender: (Gender) -> Unit = {}) {
                     selectedColor = MaterialTheme.colorScheme.primary
                 )
             )
-            Text(text = "Male")
+            Text(text = Gender.Male.name)
 
             RadioButton(
                 selected = selectedGender == Gender.Female,
@@ -66,7 +67,7 @@ fun GenderSelector(setGender: (Gender) -> Unit = {}) {
                     selectedColor = MaterialTheme.colorScheme.primary
                 )
             )
-            Text(text = "Female")
+            Text(text = Gender.Female.name)
 
             RadioButton(
                 selected = selectedGender == Gender.Other,
@@ -78,7 +79,7 @@ fun GenderSelector(setGender: (Gender) -> Unit = {}) {
                     selectedColor = MaterialTheme.colorScheme.primary
                 )
             )
-            Text(text = "Other")
+            Text(text = Gender.Other.name)
         }
     }
 }
