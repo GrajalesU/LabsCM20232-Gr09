@@ -1,6 +1,7 @@
 package co.edu.udea.compumovil.gr09_20232.lab1
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,7 +27,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import kotlinx.coroutines.Dispatchers
@@ -39,7 +42,11 @@ fun LocatationDownMenu(){
     var selectedItemCities by remember { mutableStateOf(" ")  }
     var countries: List<CountryData>? by remember { mutableStateOf(null) }
     var cities: List<String>? by remember { mutableStateOf(null) }
+    var mContext = LocalContext.current
 
+    //strings
+    val selectCountryLabel = stringResource(id = R.string.select_country_label)
+    val selectCityLabel = stringResource(id = R.string.select_city_label)
 
     var expandedCountries by remember { mutableStateOf(false) }
     var expandedCities by remember { mutableStateOf(false) }
@@ -86,7 +93,7 @@ fun LocatationDownMenu(){
                 .onGloballyPositioned { coordinates ->
                     textFieldSize = coordinates.size.toSize()
                 },
-            label = { Text(text = "Selecciona tu paìs") },
+            label = { Text(text = selectCountryLabel) },
             textStyle = LocalTextStyle.current.copy(
                 color = LocalContentColor.current
             ),
@@ -107,6 +114,7 @@ fun LocatationDownMenu(){
                 DropdownMenuItem(text = { Text(text = label.countryName) }, onClick = {
                     selectedItemCountries = label.countryName
                     expandedCountries = false
+                    Toast.makeText(mContext, "  $selectedItemCountries", Toast.LENGTH_SHORT).show()
                     cities = label.citiesName
                 })
             }
@@ -134,7 +142,7 @@ fun LocatationDownMenu(){
                 .onGloballyPositioned { coordinates ->
                     textFieldSize = coordinates.size.toSize()
                 },
-            label = { Text(text = "Selecciona tu ciudad") },
+            label = { Text(text = selectCityLabel) },
             textStyle = LocalTextStyle.current.copy(
                 color = LocalContentColor.current
             ),
@@ -154,6 +162,7 @@ fun LocatationDownMenu(){
             cities?.forEach { label ->
                 DropdownMenuItem(text = { Text(text = label) }, onClick = {
                     selectedItemCities = label
+                    Toast.makeText(mContext, "  $selectedItemCities", Toast.LENGTH_SHORT).show()
                     expandedCities = false
                 })
             }
