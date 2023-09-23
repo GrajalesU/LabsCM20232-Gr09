@@ -17,4 +17,12 @@
     <string name="last_name">Apellido</string>
     <string name="next">Siguiente</string>
     <string name="gender">Género</string>
+    <string name="male">Hombre</string>
+    <string name="female">Mujer</string>
+    <string name="other">Otro</string>
+    <string name="elementary_school">Escuela Primaria</string>
+    <string name="middle_school">Escuela Secundaria</string>
+    <string name="high_school">Escuela Preparatoria</string>
+    <string name="college">Tecnología</string>
+    <string name="university">Universidad</string>
 </resources>

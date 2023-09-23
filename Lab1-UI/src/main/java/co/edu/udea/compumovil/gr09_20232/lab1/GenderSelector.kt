@@ -22,10 +22,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
-enum class Gender {
-    Male,
-    Female,
-    Other
+enum class Gender(val stringValue: String) {
+    Male("male"),
+    Female("female"),
+    Other("other")
+}
+
+fun getGenderStringResourceId(gender: Gender): Int {
+    return when (gender) {
+        Gender.Male -> R.string.male
+        Gender.Female -> R.string.female
+        Gender.Other -> R.string.other
+    }
 }
 
 @Composable
@@ -55,7 +63,7 @@ fun GenderSelector(setGender: (Gender) -> Unit = {}) {
                     selectedColor = MaterialTheme.colorScheme.primary
                 )
             )
-            Text(text = Gender.Male.name)
+            Text(text = stringResource(getGenderStringResourceId(Gender.Male)))
 
             RadioButton(
                 selected = selectedGender == Gender.Female,
@@ -67,7 +75,7 @@ fun GenderSelector(setGender: (Gender) -> Unit = {}) {
                     selectedColor = MaterialTheme.colorScheme.primary
                 )
             )
-            Text(text = Gender.Female.name)
+            Text(text = stringResource(getGenderStringResourceId(Gender.Female)))
 
             RadioButton(
                 selected = selectedGender == Gender.Other,
@@ -79,7 +87,7 @@ fun GenderSelector(setGender: (Gender) -> Unit = {}) {
                     selectedColor = MaterialTheme.colorScheme.primary
                 )
             )
-            Text(text = Gender.Other.name)
+            Text(text = stringResource(getGenderStringResourceId(Gender.Other)))
         }
     }
 }

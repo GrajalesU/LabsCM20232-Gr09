@@ -16,4 +16,12 @@
     <string name="last_name">Last Name</string>
     <string name="next">Next</string>
     <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+    <string name="elementary_school"> Elementary School </string>
+    <string name="middle_school"> Middle School </string>
+    <string name="high_school"> High School </string>
+    <string name="college">College</string>
+    <string name="university">University</string>
 </resources>
