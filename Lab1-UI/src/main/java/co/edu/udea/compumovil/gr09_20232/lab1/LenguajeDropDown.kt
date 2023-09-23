@@ -52,7 +52,7 @@ fun ChooseLenguajeDropDown(setChooseLenguaje: (ChooseLenguaje) -> Unit = {}) {
     var expanded by remember { mutableStateOf(false) }
     var selectedItem by remember { mutableStateOf(ChooseLenguaje.Spanish.name) }
     val items = ChooseLenguaje.values().toList()
-    val chooseLenguaje = stringResource(id = R.string.lenguaje_choose)
+    var chooseLenguaje = stringResource(id = R.string.lenguaje_choose)
 
     var textFieldSize by remember { mutableStateOf(Size.Zero) }
 

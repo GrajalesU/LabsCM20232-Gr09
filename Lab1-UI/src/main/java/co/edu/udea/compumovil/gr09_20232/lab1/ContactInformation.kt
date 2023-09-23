@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -44,7 +43,7 @@ fun SecondMainContent(){
 
         var selectedLanguage by remember { mutableStateOf(ChooseLenguaje.Spanish) }
 
-
+        
         if(potraitMode.value == Configuration.ORIENTATION_PORTRAIT){
             HeaderWithTitle(title = titleContactInformation)
             FormElement(label = phoneContact, inputType = InputType.Number)
