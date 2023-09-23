@@ -25,28 +25,22 @@ import androidx.compose.ui.Alignment
 @Composable
 fun SecondMainContent(viewModel: FormViewModel){
     //strings
-    val titleContactInformation = stringResource(id = R.string.title_contact_information)
-    val phoneContact = stringResource(id = R.string.phone_contact)
-    val emailContact = stringResource(id = R.string.email_contact)
-    val directionContact = stringResource(id = R.string.direction_contact)
+
     val uiState by viewModel.uiState.collectAsState()
 
     Column{
         val config = LocalConfiguration.current
         val potraitMode = remember{ mutableStateOf(config.orientation) }
 
-        var selectedLanguage by remember { mutableStateOf(ChooseLenguaje.Spanish) }
-
-
-            HeaderWithTitle(title = titleContactInformation)
-            FormElement(label = phoneContact, inputType = InputType.Number, setValue = {
+            HeaderWithTitle(title =  stringResource(id = R.string.title_contact_information))
+            FormElement(label = stringResource(id = R.string.phone_contact), inputType = InputType.Number, setValue = {
                 viewModel.setContactInformationPhone(it)
             })
-            FormElement(label = emailContact, inputType = InputType.Email, setValue = {
+            FormElement(label = stringResource(id = R.string.email_contact), inputType = InputType.Email, setValue = {
                 viewModel.setContactInformationMail(it)
             })
             LocatationDownMenu(viewModel)
-            FormElement(label = directionContact, inputType = InputType.Number, setValue = {
+            FormElement(label = stringResource(id = R.string.direction_contact), inputType = InputType.Number, setValue = {
                 viewModel.setContactInformationAddress(it)
             })
         Button(
