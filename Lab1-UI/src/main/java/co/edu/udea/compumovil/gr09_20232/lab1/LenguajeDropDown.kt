@@ -1,5 +1,8 @@
 package co.edu.udea.compumovil.gr09_20232.lab1
 
+import android.content.Context
+import android.content.Intent
+import android.content.res.Configuration
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.clickable
@@ -35,6 +38,7 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import kotlinx.coroutines.Dispatchers
@@ -47,7 +51,7 @@ enum class ChooseLenguaje {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChooseLenguajeDropDown(setChooseLenguaje: (ChooseLenguaje) -> Unit = {}) {
+fun ChooseLenguajeDropDown(viewModel: FormViewModel,setChooseLenguaje: (ChooseLenguaje) -> Unit = {}) {
     var mContext = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
     var selectedItem by remember { mutableStateOf(ChooseLenguaje.Spanish.name) }
@@ -63,7 +67,9 @@ fun ChooseLenguajeDropDown(setChooseLenguaje: (ChooseLenguaje) -> Unit = {}) {
         Icons.Filled.KeyboardArrowDown
     }
 
-    Column (modifier = Modifier.padding(20.dp)){
+    Column (modifier = Modifier
+        .fillMaxWidth()
+        .padding(16.dp)){
 
         OutlinedTextField(
             value = selectedItem,
@@ -96,12 +102,23 @@ fun ChooseLenguajeDropDown(setChooseLenguaje: (ChooseLenguaje) -> Unit = {}) {
                     selectedItem = label.name
                     expanded = false
                     Toast.makeText(mContext, "  $selectedItem", Toast.LENGTH_SHORT).show()
-
+                    val newLocale = when (label) {
+                        ChooseLenguaje.English -> Locale("en")
+                        ChooseLenguaje.Spanish -> Locale("es")
+                    }
+                    LocaleHelper.changeLocale(mContext, newLocale)
+                    // Reinicia la actividad actual para que los cambios de idioma surtan efecto
+                    mContext.startActivity(Intent(mContext, mContext.javaClass))
                 })
             }
 
         }
     }
+
+
+
+
+
 
 }
 

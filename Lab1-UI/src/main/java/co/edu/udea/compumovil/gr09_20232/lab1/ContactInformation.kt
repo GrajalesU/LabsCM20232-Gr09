@@ -29,6 +29,11 @@ fun SecondMainContent(viewModel: FormViewModel){
     var mContext = LocalContext.current
     val uiState by viewModel.uiState.collectAsState()
 
+    /*ChooseLenguajeDropDown(viewModel) { chosenLanguage ->
+       viewModel.setLanguage(chosenLanguage)
+
+    }*/
+
     Column{
         val config = LocalConfiguration.current
         val potraitMode = remember{ mutableStateOf(config.orientation) }
@@ -77,14 +82,4 @@ fun SecondMainContent(viewModel: FormViewModel){
 }
 
 
-@Composable
-fun RenderResourse(idioma:String){
-    val resource = LocalContext.current.resources
 
-    val newConfig = Configuration(resource.configuration)
-    newConfig.setLocale(Locale(idioma))
-
-    resource.updateConfiguration(newConfig, resource.displayMetrics)
-
-
-}

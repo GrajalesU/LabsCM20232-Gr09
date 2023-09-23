@@ -17,12 +17,14 @@ data class FormUIState(
     val contactInformationMail: String = "",
     val contactInformationCountry: String = "",
     val contactInformationCity: String = "",
+
 )
 
 class FormViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(FormUIState())
     val uiState: StateFlow<FormUIState> = _uiState.asStateFlow()
-
+    private val _selectedLanguage = MutableStateFlow<ChooseLenguaje>(ChooseLenguaje.Spanish)
+    val selectedLanguage: StateFlow<ChooseLenguaje> = _selectedLanguage
     fun setPersonalInformationName(name: String) {
         _uiState.update { currentState ->
             currentState.copy(
@@ -102,4 +104,13 @@ class FormViewModel : ViewModel() {
             )
         }
     }
+
+
+
+    fun setLanguage(language: ChooseLenguaje) {
+        _selectedLanguage.value = language
+    }
+
+
+
 }
