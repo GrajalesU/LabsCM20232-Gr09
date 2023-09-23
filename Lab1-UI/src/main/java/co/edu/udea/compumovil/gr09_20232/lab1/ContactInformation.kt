@@ -43,30 +43,15 @@ fun SecondMainContent(){
 
         var selectedLanguage by remember { mutableStateOf(ChooseLenguaje.Spanish) }
 
-        
-        if(potraitMode.value == Configuration.ORIENTATION_PORTRAIT){
+
             HeaderWithTitle(title = titleContactInformation)
             FormElement(label = phoneContact, inputType = InputType.Number)
             FormElement(label = emailContact, inputType = InputType.Email)
             LocatationDownMenu()
             FormElement(label = directionContact, inputType = InputType.Number)
-        }else {
-            Column(){
-                Text(text="holi")
-            }
-        }
 
-        ChooseLenguajeDropDown(setChooseLenguaje = { selectedLanguage ->
-            // Aquí puedes manejar la selección del idioma
-            when (selectedLanguage) {
-                ChooseLenguaje.English -> {
 
-                }
-                ChooseLenguaje.Spanish -> {
-
-                }
-            }
-        })
+        
     }
 
 }
