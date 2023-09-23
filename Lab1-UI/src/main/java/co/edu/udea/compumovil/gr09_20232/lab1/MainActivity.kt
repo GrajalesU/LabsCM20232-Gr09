@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -30,6 +31,7 @@ class MainActivity : ComponentActivity() {
         Router()
     }
 
+    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Router() {
         val formViewModel = FormViewModel()
@@ -45,7 +47,7 @@ class MainActivity : ComponentActivity() {
                 PersonalInformation(formViewModel, onNextButtonClicked = onNextClicked)
             }
             composable(route = PersonalInformationScreen.ContactInformation.name) {
-                // Here is secondView
+                SecondMainContent(formViewModel)
             }
         }
     }

@@ -48,8 +48,6 @@ fun PersonalInformation(viewModel: FormViewModel, onNextButtonClicked: () -> Uni
         }
         Button(
             onClick = {
-                Log.d("personal Information", "${uiState.personalInformationName} ${uiState.personalInformationLastName} \n" +
-                        "${uiState.personalInformationBirthday} ${uiState.personalInformationGender} ${uiState.personalInformationEducationLevel}")
                 onNextButtonClicked()
             },
             modifier = Modifier

@@ -37,7 +37,7 @@ import kotlinx.coroutines.withContext
 
 @ExperimentalMaterial3Api
 @Composable
-fun LocatationDownMenu(){
+fun LocatationDownMenu(viewModel: FormViewModel){
     var selectedItemCountries by remember { mutableStateOf(" ")  }
     var selectedItemCities by remember { mutableStateOf(" ")  }
     var countries: List<CountryData>? by remember { mutableStateOf(null) }
@@ -86,7 +86,9 @@ fun LocatationDownMenu(){
 
         OutlinedTextField(
             value = selectedItemCountries,
-            onValueChange = {selectedItemCountries = it},
+            onValueChange = {selectedItemCountries = it
+                            viewModel.setContactInformationCountry(it)
+                            },
             readOnly = true,
             modifier = Modifier
                 .fillMaxWidth()
@@ -113,6 +115,7 @@ fun LocatationDownMenu(){
             countries?.forEach { label ->
                 DropdownMenuItem(text = { Text(text = label.countryName) }, onClick = {
                     selectedItemCountries = label.countryName
+                    viewModel.setContactInformationCountry(label.countryName)
                     expandedCountries = false
                     Toast.makeText(mContext, "  $selectedItemCountries", Toast.LENGTH_SHORT).show()
                     cities = label.citiesName
@@ -135,7 +138,9 @@ fun LocatationDownMenu(){
 
         OutlinedTextField(
             value = selectedItemCities,
-            onValueChange = {selectedItemCities = it},
+            onValueChange = {selectedItemCities = it
+                viewModel.setContactInformationCity(it)
+                            },
             readOnly = true,
             modifier = Modifier
                 .fillMaxWidth()
@@ -162,6 +167,8 @@ fun LocatationDownMenu(){
             cities?.forEach { label ->
                 DropdownMenuItem(text = { Text(text = label) }, onClick = {
                     selectedItemCities = label
+                    viewModel.setContactInformationCity(label)
+
                     Toast.makeText(mContext, "  $selectedItemCities", Toast.LENGTH_SHORT).show()
                     expandedCities = false
                 })
